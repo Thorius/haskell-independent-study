@@ -18,7 +18,7 @@ nthElements :: Int -> [a] -> [a]
 nthElements n xs = map getElement ( filter (isNthElem n) is )
                                 where
                                     m = length xs
-                                    is = zip xs [1..m] -- is -> Index-Element pairs
+                                    is = zip xs [1..m]
 
 skips :: [a] -> [[a]]
 skips xs = [ nthElements n xs | n <- [1..m] ]
@@ -45,17 +45,6 @@ localMaxima xs = case reachLocalMaximum xs of
                                     []           -> []
                                     (y : ys)   -> y : localMaxima ys
 
---  Unsuccessful code using find.
-
--- fstMaybe :: Maybe (a, a) -> Maybe a
--- fstMaybe (Just (x, y))= Just x
--- fstMaybe Nothing = Nothing
-
--- findLocalMaximum :: [Integer] -> Maybe Integer
--- findLocalMaximum [] = Nothing
--- findLocalMaximum xxs@(x : xs) = fstMaybe (find nextIsLarger pairs)
-                                                -- where pairs = zip xxs xs
-
 -- Exercise 3 Histogram
 
 fillZero :: Int -> [Int] -> [Int]
@@ -81,10 +70,6 @@ addStar f m
 buildRows :: Int -> [Int] -> [String]
 buildRows 0 xs = []
 buildRows n xs = map (addStar n) xs : buildRows (n - 1) xs
-
--- buildRow :: Int -> [Int] -> String
--- buildRow 0 xs = ""
--- buildRow n xs = map ( addStar n ) xs
 
 buildHistogram :: [String] -> String
 buildHistogram []         = replicate 10 '=' ++ "\n" ++ "0123456789\n"
