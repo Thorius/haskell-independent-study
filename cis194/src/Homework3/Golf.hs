@@ -15,7 +15,7 @@ getElement :: IndexPair a -> a
 getElement (a, _) = a
 
 nthElements :: Int -> [a] -> [a]
-nthElements n xs = map getElement ( (filter (isNthElem n) ) is )
+nthElements n xs = map getElement ( filter (isNthElem n) is )
                                 where
                                     m = length xs
                                     is = zip xs [1..m] -- is -> Index-Element pairs
@@ -80,14 +80,14 @@ addStar f m
 
 buildRows :: Int -> [Int] -> [String]
 buildRows 0 xs = []
-buildRows n xs = ( map ( addStar n ) xs ) : buildRows (n-1) xs
+buildRows n xs = map (addStar n) xs : buildRows (n - 1) xs
 
 -- buildRow :: Int -> [Int] -> String
 -- buildRow 0 xs = ""
 -- buildRow n xs = map ( addStar n ) xs
 
 buildHistogram :: [String] -> String
-buildHistogram []         = (take 10 $ repeat '=') ++ "\n" ++ "0123456789\n"
+buildHistogram []         = replicate 10 '=' ++ "\n" ++ "0123456789\n"
 buildHistogram (s : ss) = s ++ "\n" ++ buildHistogram ss
 
 histogram :: [Int] -> String

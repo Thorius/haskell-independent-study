@@ -3,7 +3,6 @@
 
 module Fibonacci where
 
-
 -- Exercise 1
 
 fib :: Integer -> Integer
@@ -54,7 +53,7 @@ interleaveStreams :: Stream a -> Stream a -> Stream a
 interleaveStreams (a :| as) bs = a :| interleaveStreams bs as
 
 ruler :: Stream Integer
-ruler =  foldr interleaveStreams undefined (map streamRepeat [0, 1 .. ])
+ruler =  foldr (interleaveStreams . streamRepeat) undefined [0, 1 ..]
 
 -- Exercise 6
 
@@ -65,13 +64,13 @@ instance Num (Stream Integer) where
     fromInteger n = n :| streamRepeat 0
     negate = streamMap negate
     (a :| as) + (b :| bs) = (a + b) :| (as + bs)
-    (a :| as) * bbs@(b :| bs) = (a * b) :| ((streamMap (*a) bs) + (as * bbs))
+    (a :| as) * bbs@(b :| bs) = (a * b) :| (streamMap (* a) bs + (as * bbs))
     abs = streamMap abs
     signum = streamMap signum
 
 instance Fractional (Stream Integer) where
     fromRational _ = nats
-    aas@(a :| as) / bbs@(b :| bs) = (a `div` b) :| ( streamMap (`div` b) ( as - (aas / bbs) * bs) )
+    aas@(a :| as) / bbs@(b :| bs) = (a `div` b) :| streamMap (`div` b) (as - (aas / bbs) * bs)
 
 fibsStream :: Stream Integer
 fibsStream = x / (1 - x - x*x)

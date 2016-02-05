@@ -26,12 +26,11 @@ parseMessage line = case id of
                                         id = head lineWords
 
 parseLines :: [String] -> [LogMessage]
-parseLines []         = []
-parseLines (s : ss) = (parseMessage s) : parseLines ss
+parseLines = map parseMessage
 
 
 parse :: String -> [LogMessage]
-parse text = (parseLines . lines) text
+parse = parseLines . lines
 
 -- Exercise 2
 
@@ -51,8 +50,7 @@ insert logM (Node leftT nodeM rightT)
 -- Exercise 3
 
 build :: [LogMessage] -> MessageTree
-build []              = Leaf
-build (log : logs) = insert log (build logs)
+build = foldr insert Leaf
 
 -- Exercise 4
 

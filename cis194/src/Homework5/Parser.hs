@@ -2,11 +2,11 @@
 -- dependency on hackage. Builds an explicit representation of the
 -- syntax tree to fold over using client-supplied semantics.
 module Parser (parseExp) where
-import Control.Applicative hiding (Const)
-import Control.Arrow
-import Data.Char
-import Data.Monoid
-import Data.List (foldl')
+import           Control.Applicative hiding (Const)
+import           Control.Arrow
+import           Data.Char
+import           Data.List           (foldl')
+import           Data.Monoid
 
 -- Building block of a computation with some state of type @s@
 -- threaded through it, possibly resulting in a value of type @r@
@@ -52,7 +52,7 @@ num = maybe id (const negate) <$> optional (char '-') <*> (toInteger <$> some di
 
 -- Parse a single white space character.
 space :: Parser ()
-space = State $ parseSpace
+space = State parseSpace
     where parseSpace [] = Nothing
           parseSpace s@(c:cs)
               | isSpace c = Just ((), cs)
@@ -60,7 +60,7 @@ space = State $ parseSpace
 
 -- Consume zero or more white space characters.
 eatSpace :: Parser ()
-eatSpace = const () <$> many space
+eatSpace = Control.Monad.void (many space)
 
 -- Parse a specific character.
 char :: Char -> Parser Char
@@ -71,7 +71,7 @@ char c = State parseChar
 
 -- Parse one of our two supported operator symbols.
 op :: Parser (Expr -> Expr -> Expr)
-op = const Add <$> (char '+') <|> const Mul <$> (char '*')
+op = const Add <$> char '+' <|> const Mul <$> char '*'
 
 -- Succeed only if the end of the input has been reached.
 eof :: Parser ()
