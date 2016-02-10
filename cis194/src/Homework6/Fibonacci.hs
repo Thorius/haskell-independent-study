@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE FlexibleInstances #-}
 
-module Fibonacci where
+module Homework6.Fibonacci where
 
 -- Exercise 1
 

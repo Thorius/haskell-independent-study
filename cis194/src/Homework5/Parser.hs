@@ -1,7 +1,7 @@
 -- Applicative parser for infix arithmetic expressions without any
 -- dependency on hackage. Builds an explicit representation of the
 -- syntax tree to fold over using client-supplied semantics.
-module Parser (parseExp) where
+module Homework5.Parser (parseExp) where
 import           Control.Applicative hiding (Const)
 import           Control.Arrow
 import           Data.Char
@@ -60,7 +60,7 @@ space = State parseSpace
 
 -- Consume zero or more white space characters.
 eatSpace :: Parser ()
-eatSpace = Control.Monad.void (many space)
+eatSpace = const () <$> many space
 
 -- Parse a specific character.
 char :: Char -> Parser Char

@@ -1,13 +1,13 @@
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE TypeSynonymInstances #-}
-module JoinListBuffer where
+module Homework7.JoinListBuffer where
 
 import           Data.Monoid
-import           JoinList
-import           Scrabble
-import           Sized
+import           Homework7.JoinList
+import           Homework7.Scrabble
+import           Homework7.Sized
 
-import           Buffer
+import           Homework7.Buffer
 
 -- Exercise 4
 

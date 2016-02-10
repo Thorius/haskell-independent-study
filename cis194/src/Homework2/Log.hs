@@ -1,8 +1,8 @@
 -- CIS 194 Homework 2
 
-module Log where
+module Homework2.Log where
 
-import Control.Applicative
+import           Control.Applicative
 
 data MessageType = Info
                  | Warning

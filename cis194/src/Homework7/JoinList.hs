@@ -1,9 +1,9 @@
 
-module JoinList where
+module Homework7.JoinList where
 
 import           Data.Monoid
-import           Scrabble
-import           Sized
+import           Homework7.Scrabble
+import           Homework7.Sized
 
 data JoinList m a = Empty
                   | Single m a

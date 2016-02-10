@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wall #-}
-module HigherOrder where
+module Homework4.HigherOrder where
 
 import           Data.List
 

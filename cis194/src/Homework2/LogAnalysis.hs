@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module LogAnalysis where
+module Homework2.LogAnalysis where
 
-import           Log
+import           Homework2.Log
 
 -- Exercise 1
 

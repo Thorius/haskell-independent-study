@@ -1,7 +1,7 @@
-module Main where
+module Homework7.StringBufEditor where
 
-import StringBuffer
-import Editor
+import           Homework7.Editor
+import           Homework7.StringBuffer
 
 main = runEditor editor $ unlines
          [ "This buffer is for notes you don't want to save, and for"

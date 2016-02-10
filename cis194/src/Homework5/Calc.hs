@@ -1,12 +1,12 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE TypeSynonymInstances #-}
-module Calc where
+module Homework5.Calc where
 
-import qualified Data.Map as M
-import           ExprT
-import           Parser
-import           StackVM
+import qualified Data.Map          as M
+import           Homework5.ExprT
+import           Homework5.Parser
+import           Homework5.StackVM
 
 -- Exercise 1
 

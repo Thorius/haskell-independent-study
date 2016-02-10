@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module Golf where
+module Homework3.Golf where
 
 import           Data.List
 

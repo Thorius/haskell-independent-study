@@ -1,8 +1,8 @@
-module Main where
+module Homework7.JoinListBufEditor where
 
-import           Buffer
-import           Editor
-import           JoinListBuffer
+import           Homework7.Buffer
+import           Homework7.Editor
+import           Homework7.JoinListBuffer
 
 
 initialBuffer :: JoinListBuffer

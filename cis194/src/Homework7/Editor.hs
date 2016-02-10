@@ -1,10 +1,10 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE ScopedTypeVariables        #-}
-module Editor where
+module Homework7.Editor where
 
 import           System.IO
 
-import           Buffer
+import           Homework7.Buffer
 
 import           Control.Exception
 import           Control.Monad.State

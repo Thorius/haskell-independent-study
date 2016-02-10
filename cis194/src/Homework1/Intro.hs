@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wall #-}
 
+module Homework1.Intro where
+
 -- Credit Card Validation
 
 -- Exercise 1

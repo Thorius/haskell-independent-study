@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE TypeSynonymInstances       #-}
-module Scrabble where
+module Homework7.Scrabble where
 
 import qualified Data.Map.Strict as Map
 
