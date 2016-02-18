@@ -2,10 +2,10 @@
    due Monday, 1 April
 -}
 
-module AParser where
+module Homework10.AParser where
 
 import           Control.Applicative
-
+import           Control.Monad
 import           Data.Char
 
 -- A parser for a value of type a is a function which takes a String
@@ -57,3 +57,46 @@ posInt = Parser f
 ------------------------------------------------------------
 -- Your code goes below here
 ------------------------------------------------------------
+
+-- Exercise 1
+
+first :: (a -> b) -> (a, c) -> (b, c)
+first f (x, y) = (f x, y)
+
+instance Functor Parser where
+  fmap f (Parser p) = Parser (fmap (first f) . p)
+
+-- Exercise 2
+
+instance Applicative Parser where
+    pure p      = Parser ( \str -> Just (p, str) )
+    p1 <*> p2   = Parser r
+                    where
+                        r str = case runParser p1 str of
+                            -- p1Res is a function!
+                            Just (p1Res, p1Str) -> first p1Res <$> runParser p2 p1Str
+                            Nothing             -> Nothing
+
+-- Exercise 3
+
+abParser :: Parser (Char, Char)
+abParser = (,) <$> char 'a' <*> char 'b'
+
+abParser_ :: Parser ()
+abParser_ = Control.Monad.void abParser
+
+intPair :: Parser [Integer]
+intPair = ( \x _ y -> [x, y] ) <$> posInt <*> char ' ' <*> posInt
+
+-- Exercise 4
+
+instance Alternative Parser where
+    empty       = Parser (const Nothing)
+    p1 <|> p2   = Parser (\str -> case runParser p1 str of
+        Just (p1Res, p1Str) -> Just (p1Res, p1Str)
+        Nothing             -> runParser p2 str )
+
+-- Exercise 5
+
+intOrUppercase :: Parser ()
+intOrUppercase =  void posInt <|> void (satisfy isUpper)
